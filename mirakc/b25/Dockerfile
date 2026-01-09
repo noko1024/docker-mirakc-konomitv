@@ -1,7 +1,7 @@
 FROM alpine AS b25-build
 RUN apk add --no-cache cmake git g++ libtool make pkgconf pcsc-lite-dev
 RUN git clone --depth=1 https://github.com/tsukumijima/libaribb25.git /src
-RUN cmake -S /src -B /build -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/opt/libaribb25
+RUN cmake -S /src -B /build -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/opt/libaribb25 -D CMAKE_POLICY_VERSION_MINIMUM=3.5
 RUN make -C /build -j $(nproc)
 RUN make -C /build install
 
